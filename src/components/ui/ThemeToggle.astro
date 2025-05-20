@@ -1,0 +1,40 @@
+---
+// src/components/ui/ThemeToggle.astro
+import { Sun, Moon } from 'lucide-react'; // Usaremos iconos de lucide-react que Shadcn suele instalar
+---
+
+<button id="theme-toggle" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+  <span class="hidden dark:block">
+    <Sun class="h-5 w-5" />
+  </span>
+  <span class="block dark:hidden">
+    <Moon class="h-5 w-5" />
+  </span>
+  <span class="sr-only">Toggle theme</span>
+</button>
+
+<script is:inline>
+  const themeToggle = document.getElementById('theme-toggle');
+  const htmlElement = document.documentElement;
+
+  // Función para aplicar el tema
+  const applyTheme = (theme) => {
+    if (theme === 'dark') {
+      htmlElement.classList.add('dark');
+    } else {
+      htmlElement.classList.remove('dark');
+    }
+    localStorage.setItem('theme', theme);
+  };
+
+  // Cargar tema guardado o preferencia del sistema al inicio
+  const currentTheme = localStorage.getItem('theme') || 
+                       (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  applyTheme(currentTheme);
+
+  // Event listener para el botón
+  themeToggle.addEventListener('click', () => {
+    const newTheme = htmlElement.classList.contains('dark') ? 'light' : 'dark';
+    applyTheme(newTheme);
+  });
+</script>

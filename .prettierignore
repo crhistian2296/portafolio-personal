@@ -1,0 +1,12 @@
+# Ignore artifacts:
+dist
+node_modules
+.astro
+coverage
+
+# Ignore VSCode settings:
+.vscode
+
+# Ignore environment files:
+.env
+.env.*

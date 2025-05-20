@@ -1,0 +1,105 @@
+---
+// src/pages/fr/experience.astro (Français)
+import Layout from '../../layouts/Layout.astro'; 
+import { useTranslations } from '../../i18n/utils'; 
+import { Briefcase, CalendarDays, MapPin, CheckCircle } from 'lucide-react';
+
+const lang = 'fr';
+const t = useTranslations(lang);
+
+const experiences = [
+  { // Bitban Technologies
+    company: t('experience.bitban.company'),
+    role: t('experience.bitban.role'),
+    period: t('experience.bitban.period'),
+    location: "Madrid, Espagne",
+    description: [
+      t('experience.bitban.resp1'),
+      t('experience.bitban.resp2'),
+      t('experience.bitban.resp3'),
+      t('experience.bitban.resp4'),
+      t('experience.bitban.resp5'),
+      t('experience.bitban.resp6'),
+      t('experience.bitban.resp7'),
+      t('experience.bitban.resp8'),
+    ].filter(desc => desc && (desc !== t('experience.bitban.resp1') || desc.trim() !== '') && !desc.startsWith('experience.bitban.resp')),
+    technologies: ["React", "PHP", "Next.js", "TypeScript", "Redux", "Sass", "CSS3", "Git", "GitHub", "Vitest", "React Testing Library"]
+  },
+  { // Innovation Strategies
+    company: t('experience.innovation.company'),
+    role: t('experience.innovation.role'),
+    period: t('experience.innovation.period'),
+    location: "Barcelone, Espagne",
+    description: [
+      t('experience.innovation.resp1'),
+      t('experience.innovation.resp2'),
+      t('experience.innovation.resp3'),
+    ].filter(desc => desc && (desc !== t('experience.innovation.resp1') || desc.trim() !== '') && !desc.startsWith('experience.innovation.resp')),
+    technologies: ["React", "Next.js"]
+  },
+  { // Universidad del Valle
+    company: t('experience.univalle.company'),
+    role: t('experience.univalle.role'),
+    period: t('experience.univalle.period'),
+    location: "Cali, Colombie",
+    description: [
+      t('experience.univalle.resp1'),
+      t('experience.univalle.resp2'),
+      t('experience.univalle.resp3'),
+    ].filter(desc => desc && (desc !== t('experience.univalle.resp1') || desc.trim() !== '') && !desc.startsWith('experience.univalle.resp')),
+    technologies: ["React", "Next.js"]
+  }
+];
+---
+
+<Layout title={t('nav.experience') + " - Crhistian García"} description={t('experience.metaDescription')}>
+  <section class="py-10 md:py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold">{t('nav.experience')}</h1>
+      </div>
+
+      <div class="space-y-12">
+        {experiences.map((exp, index) => (
+          <div class={`bg-gray-50 dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-md border-l-4 ${index % 2 === 0 ? 'border-indigo-500' : 'border-green-500'}`}>
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3">
+              <h2 class="text-2xl font-semibold text-indigo-700 dark:text-indigo-400 mb-1 sm:mb-0">{exp.role}</h2>
+              <span class="text-sm text-gray-600 dark:text-gray-400 flex items-center">
+                <CalendarDays size={16} class="mr-2 opacity-75" /> {exp.period}
+              </span>
+            </div>
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+              <h3 class="text-lg font-medium text-gray-800 dark:text-gray-200 flex items-center">
+                <Briefcase size={18} class="mr-2 opacity-75" /> {exp.company}
+              </h3>
+              <span class="text-sm text-gray-500 dark:text-gray-500 flex items-center mt-1 sm:mt-0">
+                <MapPin size={16} class="mr-2 opacity-75" /> {exp.location}
+              </span>
+            </div>
+            
+            <h4 class="font-semibold text-md text-gray-700 dark:text-gray-300 mb-2">{t('experience.responsibilities')}:</h4>
+            <ul class="list-none space-y-2 mb-4">
+              {exp.description.map(item => (
+                <li class="flex items-start">
+                  <CheckCircle size={18} class="mr-2 text-green-500 dark:text-green-400 flex-shrink-0 mt-1" />
+                  <span class="text-gray-700 dark:text-gray-300 text-justify">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            {exp.technologies && exp.technologies.length > 0 && (
+              <div>
+                <h4 class="font-semibold text-md text-gray-700 dark:text-gray-300 mb-2">{t('experience.technologiesUsed')}:</h4>
+                <div class="flex flex-wrap gap-2">
+                  {exp.technologies.map(tech => (
+                    <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

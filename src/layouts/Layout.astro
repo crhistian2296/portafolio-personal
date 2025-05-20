@@ -1,0 +1,94 @@
+---
+// src/layouts/Layout.astro
+import '../styles/global.css';
+import ThemeToggle from '../components/ui/ThemeToggle.astro';
+import LanguageSwitcher from '../components/ui/LanguageSwitcher.astro'; // Descomentado
+import { getLangFromUrl, useTranslations, getPathWithLang } from '../i18n/utils'; // Añadido useTranslations y getPathWithLang
+
+export interface Props {
+  title: string;
+  description?: string; // Opcional
+}
+
+const { title, description } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang); // Para traducir el texto del footer
+
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description || "Portafolio de Crhistian García"} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <script is:inline>
+      function scrollToSection(sectionId, event) {
+        if (event) {
+          event.preventDefault();
+        }
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const header = document.querySelector('header.fixed');
+          const headerHeight = header ? header.offsetHeight : 0;
+          const sectionTop = section.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+          window.scrollTo({
+            top: sectionTop,
+            behavior: 'smooth'
+          });
+        }
+      }
+      window.scrollToSection = scrollToSection;
+
+      // Script to persist themeaplicar el tema oscuro/claro inmediatamente para evitar FOUC
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+      // Actualizar el tema globalmente para Astro
+      window.localStorage.setItem('theme', theme);
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300 ease-in-out">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-[3px] shadow-sm">
+      <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <span class="text-xl font-bold whitespace-nowrap">
+          &lt;CG<span style="color:#00b09b">/</span>&gt;
+        </span>
+        {/* Navegación principal para escritorio */}
+        <div class="flex items-center space-x-3 lg:space-x-4 text-sm lg:text-base">
+          <a href="#about" onclick="scrollToSection('about', event)" target="_self" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">{t('nav.about')}</a>
+          <a href="#experience" onclick="scrollToSection('experience', event)" target="_self" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">{t('nav.experience')}</a>
+          <a href="#projects" onclick="scrollToSection('projects', event)" target="_self" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">{t('nav.projects')}</a>
+        </div>
+        <div class="flex items-center gap-2 lg:gap-3">
+          <LanguageSwitcher />
+          <ThemeToggle />
+          {/* Aquí podríamos añadir un botón para menú móvil en el futuro */}
+        </div>
+      </nav>
+    </header>
+    <main class="pt-20 container mx-auto px-4">
+      <slot />
+    </main>
+    <footer class="text-center py-8 mt-16 border-t border-gray-200 dark:border-gray-700">
+      <p>&copy; {new Date().getFullYear()} Crhistian García. {t('footer.rights')}</p> {/* Texto del footer traducido */}
+    </footer>
+  </body>
+</html>
