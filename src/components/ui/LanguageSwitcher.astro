@@ -9,21 +9,21 @@ const currentPath = Astro.url.pathname.replace(new RegExp(`^/${currentLang}`), '
 ---
 
 <div class="relative">
-  <button id="lang-switcher-button" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center gap-1">
-    <Globe class="h-5 w-5" />
+  <button id="lang-switcher-button" class="p-2 rounded-md hover:bg-secondary transition-colors flex items-center gap-1">
+    <Globe className="h-5 w-5 text-primary" />
     {languages[currentLang].slice(0, 2).toUpperCase()}
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 text-primary" viewBox="0 0 20 20" fill="currentColor">
       <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
     </svg>
   </button>
-  <div id="lang-switcher-dropdown" class="absolute right-0 mt-2 w-36 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg py-1 hidden z-20">
+  <div id="lang-switcher-dropdown" class="absolute right-0 mt-2 w-36 bg-card border border-border rounded-md shadow-lg py-1 hidden z-20">
     {
       Object.entries(languages).map(([lang, name]) => (
         <a
           href={getPathWithLang(lang as keyof typeof languages, currentPath)}
           class:list={[
-            "block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700",
-            lang === currentLang ? "font-semibold text-indigo-600 dark:text-indigo-400" : "text-gray-700 dark:text-gray-300"
+            "block px-4 py-2 text-sm hover:bg-secondary",
+            lang === currentLang ? "font-semibold text-primary" : "text-foreground"
           ]}
         >
           {name}

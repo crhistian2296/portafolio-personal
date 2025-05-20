@@ -3,12 +3,12 @@
 import { Sun, Moon } from 'lucide-react'; // Usaremos iconos de lucide-react que Shadcn suele instalar
 ---
 
-<button id="theme-toggle" class="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+<button id="theme-toggle" class="p-2 rounded-md hover:bg-secondary transition-colors">
   <span class="hidden dark:block">
-    <Sun class="h-5 w-5" />
+    <Sun className="h-5 w-5 text-primary" />
   </span>
   <span class="block dark:hidden">
-    <Moon class="h-5 w-5" />
+    <Moon className="h-5 w-5 text-primary" />
   </span>
   <span class="sr-only">Toggle theme</span>
 </button>

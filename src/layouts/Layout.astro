@@ -66,28 +66,29 @@ const t = useTranslations(lang); // Para traducir el texto del footer
       window.localStorage.setItem('theme', theme);
     </script>
   </head>
-  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300 ease-in-out">
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-[3px] shadow-sm">
+  <body class="bg-background text-foreground transition-colors duration-300 ease-in-out">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-[3px] shadow-sm">
       <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
         <span class="text-xl font-bold whitespace-nowrap">
-         <span class="text-primary dark:text-indigo-400">&lt;</span>CG<span style="color:#00b09b">/</span><span class="text-primary dark:text-indigo-400">&gt;</span>
+         <span class="text-primary">&lt;</span>CG<span class="text-accent">/</span><span class="text-primary">&gt;</span>
         </span>
         {/* Navegación principal para escritorio */}
         <div class="hidden md:flex items-center space-x-3 lg:space-x-4 text-sm lg:text-base">
-          <a href="#about" onclick="scrollToSection('about', event)" target="_self" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">{t('nav.about')}</a>
-          <a href="#experience" onclick="scrollToSection('experience', event)" target="_self" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">{t('nav.experience')}</a>
-          <a href="#projects" onclick="scrollToSection('projects', event)" target="_self" class="px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">{t('nav.projects')}</a>
+          <a href="#about" onclick="scrollToSection('about', event)" target="_self" class="px-3 py-2 rounded-md hover:bg-secondary transition-colors">{t('nav.about')}</a>
+          <a href="#experience" onclick="scrollToSection('experience', event)" target="_self" class="px-3 py-2 rounded-md hover:bg-secondary transition-colors">{t('nav.experience')}</a>
+          <a href="#projects" onclick="scrollToSection('projects', event)" target="_self" class="px-3 py-2 rounded-md hover:bg-secondary transition-colors">{t('nav.projects')}</a>
         </div>
         <div class="flex items-center gap-2 lg:gap-3">
           <LanguageSwitcher />
           <ThemeToggle />
-          <button id="menu-toggle" class="md:hidden flex items-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle menu">
-            <Menu class="w-6 h-6" />
+          <button id="menu-toggle" class="md:hidden flex items-center p-2 rounded-md hover:bg-secondary transition-colors" aria-label="Toggle menu">
+            <Menu className="w-6 h-6" />
+          </button>
         </div>
-        <div id="menu" class="hidden absolute top-14 right-4 z-10 bg-white dark:bg-gray-900 p-4 rounded-md shadow-lg">
-          <a href="#about" onclick="scrollToSection('about', event)" target="_self" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">{t('nav.about')}</a>
-          <a href="#experience" onclick="scrollToSection('experience', event)" target="_self" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">{t('nav.experience')}</a>
-          <a href="#projects" onclick="scrollToSection('projects', event)" target="_self" class="block px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">{t('nav.projects')}</a>
+        <div id="menu" class="hidden absolute top-14 right-4 z-10 bg-background p-4 rounded-md shadow-lg">
+          <a href="#about" onclick="scrollToSection('about', event)" target="_self" class="block px-3 py-2 rounded-md hover:bg-secondary transition-colors">{t('nav.about')}</a>
+          <a href="#experience" onclick="scrollToSection('experience', event)" target="_self" class="block px-3 py-2 rounded-md hover:bg-secondary transition-colors">{t('nav.experience')}</a>
+          <a href="#projects" onclick="scrollToSection('projects', event)" target="_self" class="block px-3 py-2 rounded-md hover:bg-secondary transition-colors">{t('nav.projects')}</a>
         </div>
         <script is:inline>
           const menuToggle = document.getElementById('menu-toggle');

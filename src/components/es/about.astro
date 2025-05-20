@@ -58,76 +58,76 @@ const languagesSpoken = [
           />
         </div>
         <h2 class="text-2xl font-semibold text-center mb-2">Crhistian García</h2>
-        <p class="text-indigo-600 dark:text-indigo-400 text-center mb-6">Desarrollador Web Frontend</p>
+        <p class="text-primary text-center mb-6">Desarrollador Web Frontend</p>
         
-        <div class="text-sm text-gray-700 dark:text-gray-300 space-y-2 mb-6 text-center md:text-left">
-          <p class="flex items-center justify-start"><span class="mr-2 text-indigo-500"><Mail size={16} /></span> {t('contact.email')}: <a href="mailto:crhistian.garcia.frontend@gmail.com" class="hover:underline">crhistian.garcia.frontend@gmail.com</a></p>
-          <p class="flex items-center justify-start"><span class="mr-2 text-indigo-500"><Phone size={16} /></span> {t('contact.phone')}: <a href="tel:+34642772300" class="hover:underline">+34 642 772 300</a></p>
-          <p class="flex items-center justify-start"><span class="mr-2 text-indigo-500"><Linkedin size={16} /></span> <a href="https://www.linkedin.com/in/crhistian-alexander-garcia-urbano-5251a11b0/" target="_blank" rel="noopener noreferrer" class="hover:underline">{t('contact.linkedin')}</a></p>
-          <p class="flex items-center justify-start"><span class="mr-2 text-indigo-500"><Github size={16} /></span> <a href="https://github.com/crhistian2296" target="_blank" rel="noopener noreferrer" class="hover:underline">{t('contact.github')}</a></p>
+        <div class="text-sm text-foreground space-y-2 mb-6 text-center md:text-left">
+          <p class="flex items-center justify-start"><span class="mr-2 text-primary"><Mail size={16} /></span> {t('contact.email')}: <a href="mailto:crhistian.garcia.frontend@gmail.com" class="hover:underline">crhistian.garcia.frontend@gmail.com</a></p>
+          <p class="flex items-center justify-start"><span class="mr-2 text-primary"><Phone size={16} /></span> {t('contact.phone')}: <a href="tel:+34642772300" class="hover:underline">+34 642 772 300</a></p>
+          <p class="flex items-center justify-start"><span class="mr-2 text-primary"><Linkedin size={16} /></span> <a href="https://www.linkedin.com/in/crhistian-alexander-garcia-urbano-5251a11b0/" target="_blank" rel="noopener noreferrer" class="hover:underline">{t('contact.linkedin')}</a></p>
+          <p class="flex items-center justify-start"><span class="mr-2 text-primary"><Github size={16} /></span> <a href="https://github.com/crhistian2296" target="_blank" rel="noopener noreferrer" class="hover:underline">{t('contact.github')}</a></p>
         </div>
       </div>
 
       <div class="md:col-span-2">
-        <div class="bg-gray-50 dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-md">
-          <h3 class="text-2xl font-semibold mb-4 flex items-center"><span class="mr-2 text-indigo-500"><Briefcase size={24} /></span> {t('profile.title')}</h3>
-          <p class="text-gray-700 dark:text-gray-300 mb-6 text-justify">{t('profile.description')}</p>
+        <div class="bg-card p-6 md:p-8 rounded-lg shadow-md">
+          <h3 class="text-2xl font-semibold mb-4 flex items-center"><span class="mr-2 text-primary"><Briefcase size={24} /></span> {t('profile.title')}</h3>
+          <p class="text-foreground mb-6 text-justify">{t('profile.description')}</p>
 
-          <h3 class="text-2xl font-semibold mb-6 flex items-center"><span class="mr-2 text-indigo-500"><Code size={24} /></span> {t('skills.title')}</h3>
+          <h3 class="text-2xl font-semibold mb-6 flex items-center"><span class="mr-2 text-primary"><Code size={24} /></span> {t('skills.title')}</h3>
           <div class="mb-6 space-y-4">
             <div>
-              <h4 class="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{t('skills.languages.title')}:</h4>
+              <h4 class="font-semibold text-lg mb-2 text-foreground">{t('skills.languages.title')}:</h4>
               <div class="flex flex-wrap gap-2">
-                {technicalSkills.languagesList.map((skill: { name: string }) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
+                {technicalSkills.languagesList.map((skill: { name: string }) => <span class="bg-primary/20  text-primary dark:text-primary/100 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
               </div>
             </div>
             <div>
-              <h4 class="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{t('skills.frameworks.title')}:</h4>
+              <h4 class="font-semibold text-lg mb-2 text-foreground">{t('skills.frameworks.title')}:</h4>
               <div class="flex flex-wrap gap-2">
-                {technicalSkills.frameworksList.map((skill: { name: string }) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
+                {technicalSkills.frameworksList.map((skill: { name: string }) => <span class="bg-primary/20  text-primary dark:text-primary/100 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
               </div>
             </div>
             <div>
-              <h4 class="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{t('skills.tools.title')}:</h4>
+              <h4 class="font-semibold text-lg mb-2 text-foreground">{t('skills.tools.title')}:</h4>
               <div class="flex flex-wrap gap-2">
-                {technicalSkills.toolsList.map((skill: { name: string }) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
+                {technicalSkills.toolsList.map((skill: { name: string }) => <span class="bg-primary/20  text-primary dark:text-primary/100 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
               </div>
             </div>
             <div>
-              <h4 class="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{t('skills.styling.title')}:</h4>
+              <h4 class="font-semibold text-lg mb-2 text-foreground">{t('skills.styling.title')}:</h4>
               <div class="flex flex-wrap gap-2">
-                {technicalSkills.stylingList.map((skill: { name: string }) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
+                {technicalSkills.stylingList.map((skill: { name: string }) => <span class="bg-primary/20  text-primary dark:text-primary/100 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
               </div>
             </div>
             <div>
-              <h4 class="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{t('skills.methodologies.title')}:</h4>
+              <h4 class="font-semibold text-lg mb-2 text-foreground">{t('skills.methodologies.title')}:</h4>
               <div class="flex flex-wrap gap-2">
-                {technicalSkills.methodologiesList.map((skill: { name: string }) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
+                {technicalSkills.methodologiesList.map((skill: { name: string }) => <span class="bg-primary/20  text-primary dark:text-primary/100 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
               </div>
             </div>
             <div>
-              <h4 class="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{t('skills.testing.title')}:</h4>
+              <h4 class="font-semibold text-lg mb-2 text-foreground">{t('skills.testing.title')}:</h4>
               <div class="flex flex-wrap gap-2">
-                {technicalSkills.testingList.map((skill: { name: string }) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
+                {technicalSkills.testingList.map((skill: { name: string }) => <span class="bg-primary/20  text-primary dark:text-primary/100 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
               </div>
             </div>
           </div>
 
-          <h3 class="text-2xl font-semibold mb-6 flex items-center"><span class="mr-2 text-indigo-500"><GraduationCap size={24} /></span> {t('education.title')}</h3>
+          <h3 class="text-2xl font-semibold mb-6 flex items-center"><span class="mr-2 text-primary"><GraduationCap size={24} /></span> {t('education.title')}</h3>
           <div class="space-y-6 mb-6">
             {education.map((edu: { institution: string; degree: string; period: string; description?: string }) => (
-              <div class="bg-white dark:bg-gray-750 p-4 rounded-md shadow-sm">
-                <h4 class="text-xl font-semibold text-indigo-600 dark:text-indigo-400">{edu.degree}</h4>
-                <p class="text-gray-600 dark:text-gray-400 text-sm mb-1">{edu.institution} | {edu.period}</p>
-                <p class="text-gray-700 dark:text-gray-300 text-sm">{edu.description}</p>
+              <div class="bg-background p-4 rounded-md shadow-sm">
+                <h4 class="text-xl font-semibold text-primary">{edu.degree}</h4>
+                <p class="text-muted-foreground text-sm mb-1">{edu.institution} | {edu.period}</p>
+                <p class="text-foreground text-sm">{edu.description}</p>
               </div>
             ))}
           </div>
 
-          <h3 class="text-2xl font-semibold mb-6 flex items-center"><span class="mr-2 text-indigo-500"><MessageCircle size={24} /></span> {t('languages.title')}</h3>
+          <h3 class="text-2xl font-semibold mb-6 flex items-center"><span class="mr-2 text-primary"><MessageCircle size={24} /></span> {t('languages.title')}</h3>
           <div class="space-y-2">
             {languagesSpoken.map(langItem => (
-              <p class="text-gray-700 dark:text-gray-300">{langItem.name}: <span class="font-medium">{langItem.level}</span></p>
+              <p class="text-foreground">{langItem.name}: <span class="font-medium">{langItem.level}</span></p>
             ))}
           </div>
         </div>
