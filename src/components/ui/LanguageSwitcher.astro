@@ -1,0 +1,109 @@
+---
+import { getLangFromUrl } from '../../i18n/utils';
+import { languages as langOptions, type UiKeys } from '../../i18n/ui'; // langOptions will be { en: 'English', es: 'Español', ... }
+
+const currentLangCode = getLangFromUrl(Astro.url) as keyof typeof flagMap;
+
+const currentPathname = Astro.url.pathname; // e.g., /es/about or /en/blog/post1
+const pathSegments = currentPathname.split('/').filter(Boolean);
+// Remove the current lang segment to get the base path
+const basePath = pathSegments.length > 1 ? pathSegments.slice(1).join('/') : ''; // e.g., 'about' or 'blog/post1' or ''
+
+const flagMap = {
+  es: '🇪🇸',
+  en: '🇬🇧',
+  fr: '🇫🇷',
+};
+---
+
+<div class="relative">
+  <button 
+    class="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors"
+    id="language-menu-button"
+    aria-expanded="false"
+    aria-haspopup="true"
+  >
+    <span class="w-5">
+      {flagMap[currentLangCode] || ''}
+    </span>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+  
+  <div 
+    class="hidden absolute right-0 mt-2 w-40 py-1 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-10"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="language-menu-button"
+    tabindex="-1"
+  >
+    {Object.entries(langOptions).map(([code, name]) => {
+      const targetLangCode = code as keyof typeof langOptions;
+      // Construct the new path: /<langCode>/<basePath>
+      // If basePath is empty (e.g. homepage), ensure trailing slash for consistency: /<langCode>/
+      const finalHref = `/${String(targetLangCode)}${basePath ? `/${basePath}` : '/'}`;
+
+      return (
+        <a 
+          href={finalHref}
+          class:list={[
+            "block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors",
+            { "font-semibold bg-gray-100 dark:bg-gray-700": currentLangCode === targetLangCode }
+          ]}
+          role="menuitem"
+          tabindex="-1"
+          aria-current={currentLangCode === targetLangCode ? 'page' : undefined}
+        >
+          <span class="mr-2">{flagMap[targetLangCode as keyof typeof flagMap] || ''}</span>
+          {name}
+        </a>
+      );
+    })}
+  </div>
+</div>
+
+<script>
+  const menuButton = document.getElementById('language-menu-button');
+  const menu = menuButton?.nextElementSibling as HTMLElement | null;
+  const container = menuButton?.parentElement; // The main div.relative
+
+  if (container && menuButton && menu) {
+    let hideMenuTimeout: number;
+
+    const showMenu = () => {
+      clearTimeout(hideMenuTimeout);
+      menu.classList.remove('hidden');
+      menuButton.setAttribute('aria-expanded', 'true');
+    };
+
+    const startHideMenuTimer = () => {
+      hideMenuTimeout = window.setTimeout(() => {
+        menu.classList.add('hidden');
+        menuButton.setAttribute('aria-expanded', 'false');
+      }, 200); // Adjust delay as needed (e.g., 200ms)
+    };
+
+    container.addEventListener('mouseenter', showMenu);
+    container.addEventListener('mouseleave', startHideMenuTimer);
+
+    menu.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        clearTimeout(hideMenuTimeout); // Clear any pending hide
+        menu.classList.add('hidden');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.focus();
+      }
+    });
+
+    // Ensure menu items are focusable for keyboard navigation
+    const menuItems = Array.from(menu.querySelectorAll('[role="menuitem"]')) as HTMLElement[];
+    menuItems.forEach(item => {
+      // Ensure tabindex is set if not already interactive or if needed for specific nav patterns
+      if (!item.hasAttribute('tabindex') && item.tagName.toLowerCase() === 'a') {
+         // Links are focusable by default, but -1 can be useful if controlling focus strictly
+         // For simple hover menu, default link focus might be okay.
+      }
+    });
+  }
+</script>

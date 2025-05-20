@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Me",
+    "projects": "My Projects",
+    "contact": "Contact Me"
+  },
+  "hero": {
+    "title": "Hi, I'm {{name}}",
+    "subtitle": "Frontend Developer",
+    "description": "Passionate about creating beautiful and functional web experiences.",
+    "cta": "View my projects"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I'm a frontend developer with experience in building modern and responsive web applications. I love learning new technologies and sharing my knowledge with the community.",
+    "skills": "Skills",
+    "downloadCv": "Download CV"
+  },
+  "projects": {
+    "title": "My Projects",
+    "description": "Some of my work and personal projects I've worked on.",
+    "view_project": "View Project",
+    "view_code": "View Code"
+  },
+  "contact": {
+    "title": "Contact Me",
+    "subtitle": "Get in touch",
+    "description": "Do you have a project in mind or want to work together? Send me a message and I'll get back to you as soon as possible.",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "city": "City, Country",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "subject": "Subject",
+      "message": "Your Message",
+      "submit": "Send Message"
+    },
+    "success": "Thank you for your message! I'll get back to you soon.",
+    "error": "There was an error sending your message. Please try again later.",
+    "contactInfo": "Contact Information",
+    "contactDescription": "Get in touch with me through any of these channels.",
+    "followMe": "Follow Me"
+  },
+  "footer": {
+    "description": "Frontend developer passionate about creating exceptional web experiences.",
+    "navigation": "Navigation",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "copyright": "All rights reserved."
+  },
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode"
+  },
+  "language": {
+    "es": "Spanish",
+    "en": "English",
+    "fr": "French"
+  }
+}

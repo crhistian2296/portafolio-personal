@@ -1,0 +1,60 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre Mí",
+    "projects": "Mis Proyectos",
+    "contact": "Contáctame"
+  },
+  "hero": {
+    "title": "Hola, soy {{name}}",
+    "subtitle": "Desarrollador Frontend",
+    "description": "Apasionado por crear experiencias web hermosas y funcionales.",
+    "cta": "Ver mis proyectos"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "description": "Soy un desarrollador frontend con experiencia en la creación de aplicaciones web modernas y responsivas. Me encanta aprender nuevas tecnologías y compartir mi conocimiento con la comunidad.",
+    "skills": "Habilidades",
+    "downloadCv": "Descargar CV"
+  },
+  "projects": {
+    "title": "Mis Proyectos",
+    "description": "Algunos de mis trabajos y proyectos personales en los que he trabajado.",
+    "view_project": "Ver Proyecto",
+    "view_code": "Ver Código"
+  },
+  "contact": {
+    "title": "Contáctame",
+    "description": "¿Tienes alguna pregunta o quieres trabajar juntos? No dudes en contactarme.",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "message": "Mensaje",
+      "submit": "Enviar mensaje"
+    },
+    "success": "¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.",
+    "error": "Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.",
+    "contactInfo": "Información de contacto",
+    "contactDescription": "Ponte en contacto conmigo a través de cualquiera de estos canales.",
+    "followMe": "Sígueme"
+  },
+  "footer": {
+    "title": "Portafolio Personal",
+    "description": "Desarrollador Full Stack apasionado por crear experiencias web excepcionales.",
+    "navigation": "Navegación",
+    "legal": "Legal",
+    "privacy": "Política de privacidad",
+    "terms": "Términos de servicio",
+    "rights": "Derechos reservados",
+    "copyright": "Todos los derechos reservados."
+  },
+  "theme": {
+    "light": "Modo claro",
+    "dark": "Modo oscuro"
+  },
+  "language": {
+    "es": "Español",
+    "en": "Inglés",
+    "fr": "Francés"
+  }
+}

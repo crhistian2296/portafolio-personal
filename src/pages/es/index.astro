@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/MainLayout.astro';
+import Hero from '../../components/sections/Hero.astro';
+import About from '../../components/sections/About.astro';
+import Projects from '../../components/sections/Projects.astro';
+import Contact from '../../components/sections/Contact.astro';
+import '../../styles/global.css';
+---
+<Layout>
+  <div class="flex flex-col min-h-screen">
+    <Hero />
+    <About />
+    <Projects />
+    <Contact />
+  </div>
+</Layout>

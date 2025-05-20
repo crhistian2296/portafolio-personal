@@ -1,0 +1,148 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import type { UiKeys } from '../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface NavigationLink {
+  labelKey: UiKeys;
+  href: string;
+}
+
+interface SocialItem {
+  nameKey: UiKeys; // Or keep as string if social names aren't translated often
+  name: string; // Fallback or non-translated name
+  href: string;
+  icon: 'github' | 'linkedin' | 'twitter' | 'x'; // Added 'x'
+}
+
+const currentYear = new Date().getFullYear();
+
+const footerNavigation: NavigationLink[] = [
+  { labelKey: 'footer.nav.about', href: '#about' },
+  { labelKey: 'footer.nav.projects', href: '#projects' },
+  { labelKey: 'footer.nav.contact', href: '#contact' },
+];
+
+const socialLinks: SocialItem[] = [
+  {
+    nameKey: 'social.github',
+    name: 'GitHub', // Fallback
+    href: 'https://github.com/crhistian2296', // USER's ACTUAL GITHUB
+    icon: 'github',
+  },
+  {
+    nameKey: 'social.linkedin',
+    name: 'LinkedIn', // Fallback
+    href: 'https://linkedin.com/in/crhistian-gmc', // USER's ACTUAL LINKEDIN (assuming from CorpusName)
+    icon: 'linkedin',
+  },
+  {
+    nameKey: 'social.x',
+    name: 'X (Twitter)', // Fallback
+    href: 'https://x.com/crhistian_gmc', // Example, replace with actual X if available
+    icon: 'x',
+  },
+];
+
+const getSocialIcon = (icon: 'github' | 'linkedin' | 'twitter' | 'x') => {
+  switch (icon) {
+    case 'github':
+      return (
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+        </svg>
+      );
+    case 'linkedin':
+      return (
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+        </svg>
+      );
+    case 'x':
+    case 'twitter':
+      return (
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25h6.08l4.396 5.783L18.244 2.25zm-1.562 17.125h2.31l-9.922-13.088h-2.31l9.922 13.088z"/>
+        </svg>
+      );
+    default:
+      return null;
+  }
+};
+
+---
+
+<footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+  <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+      <div class="space-y-8 xl:col-span-1">
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{t('footer.title')}</h2>
+          <p class="mt-4 text-gray-500 dark:text-gray-400">
+            {t('footer.description')}
+          </p>
+          <div class="flex space-x-6 mt-6">
+            {socialLinks.map((item) => {
+              const icon = getSocialIcon(item.icon);
+              return (
+                <>
+                  <a 
+                    href={item.href} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-gray-400 hover:text-primary dark:hover:text-primary-light"
+                  >
+                    <span class="sr-only">{item.nameKey ? t(item.nameKey) : item.name}</span>
+                    {icon}
+                  </a>
+                </>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+        <div class="md:grid md:grid-cols-2 md:gap-8">
+          <div>
+            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              {t('footer.nav.title')}
+            </h3>
+            <ul role="list" class="mt-4 space-y-4">
+              {footerNavigation.map((item) => (
+                <li>
+                  <a href={item.href} class="text-base text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                    {t(item.labelKey)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="mt-12 md:mt-0">
+            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+              {t('footer.legal.title')}
+            </h3>
+            <ul role="list" class="mt-4 space-y-4">
+              <li>
+                <a href="#" class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                  {t('footer.legal.privacy')}
+                </a>
+              </li>
+              <li>
+                <a href="#" class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                  {t('footer.legal.terms')}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-12 border-t border-gray-200 dark:border-gray-700 pt-8">
+      <p class="text-base text-gray-400 text-center">
+        &copy; {currentYear} Mi Portafolio. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+</footer>

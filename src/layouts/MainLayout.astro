@@ -1,0 +1,67 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import Navigation from '../components/Navigation.astro';
+
+const { title, description } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// The existing logic for currentPath and currentPage can likely remain
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const currentPath = `/${pathSegments.slice(1).join('/')}`;
+const currentPage = currentPath.endsWith('/') ? currentPath : `${currentPath}/`;
+---
+
+<!DOCTYPE html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    
+    <title>{title} | {t('nav.home')}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/global.css" />
+    
+    <!-- Scripts -->
+    <script>
+      // Detectar el tema del sistema y aplicarlo
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-200">
+    <Navigation currentPage={currentPage} />
+    
+    <main class="min-h-[calc(100vh-4rem)]">
+      <slot />
+    </main>
+    
+    <footer class="bg-gray-50 dark:bg-gray-800 py-8">
+      <div class="container mx-auto px-4 text-center text-gray-600 dark:text-gray-400 text-sm">
+        <p>&copy; {new Date().getFullYear()} {t('nav.home')}. {t('footer.rights')}</p>
+        <p class="mt-2">
+          {t('footer.madeWith')} 
+          <span class="text-red-500">❤</span> 
+          {t('footer.using')} 
+          <a href="https://astro.build/" target="_blank" rel="noopener noreferrer" class="text-primary dark:text-primary-light hover:underline">
+            Astro
+          </a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

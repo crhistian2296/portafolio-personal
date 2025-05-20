@@ -1,0 +1,37 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import type { Project } from '../../i18n/ui'; // Import the Project type
+import ProjectCard from '../ui/ProjectCard.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Fetch the translated list of projects. 
+// The 'as Project[]' cast assumes 'projects.list' in ui.ts returns an array of Project objects.
+const projects = t('projects.list') as Project[];
+---
+
+<section id="projects" class="section bg-gray-50 dark:bg-gray-900/30">
+  <div class="container mx-auto px-4">
+    <h2 class="section-title">
+      {t('projects.title')}
+    </h2>
+    
+       <p class="text-center text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12">
+      {t('projects.description')}
+    </p>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map((project) => (
+        <ProjectCard 
+          title={project.title}
+          description={project.description}
+          tags={project.tags}
+          image={project.image}
+          demoUrl={project.demoUrl}
+          codeUrl={project.codeUrl}
+        />
+      ))}
+    </div>
+  </div>
+</section>

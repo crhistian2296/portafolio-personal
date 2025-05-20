@@ -1,0 +1,119 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import type { UiKeys } from '../i18n/ui';
+import LanguageSwitcher from './ui/LanguageSwitcher.astro';
+import ThemeToggle from './ui/ThemeToggle.astro';
+
+const { currentPage } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface NavItem {
+  href: string;
+  label: UiKeys;
+}
+
+const homePath = `/${lang}/`;
+const navItems: NavItem[] = [
+  { href: homePath, label: 'nav.home' as UiKeys },
+  { href: `${homePath}#about`, label: 'nav.about' as UiKeys },
+  { href: `${homePath}#projects`, label: 'nav.projects' as UiKeys },
+  { href: `${homePath}#contact`, label: 'nav.contact' as UiKeys },
+];
+---
+
+<header class="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm z-50 shadow-sm">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <a href={`/${lang}/`} class="text-xl font-bold text-gray-900 dark:text-white">
+        {t('nav.brand')}
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-1">
+        {navItems.map((item) => (
+          <a 
+            href={item.href}
+            class={`px-3 py-2 rounded-md text-sm font-medium ${
+              currentPage === item.href 
+                ? 'text-primary dark:text-primary-light' 
+                : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+            } transition-colors`}
+          >
+            {t(item.label)}
+          </a>
+        ))}
+        
+        <div class="flex items-center ml-4 space-x-2">
+          <ThemeToggle />
+          <LanguageSwitcher />
+        </div>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden flex items-center">
+        <ThemeToggle />
+        <LanguageSwitcher />
+        <button 
+          id="mobile-menu-button" 
+          class="ml-2 inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div id="mobile-menu" class="hidden md:hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      {navItems.map((item) => (
+        <a 
+          href={item.href}
+          class={`block px-3 py-2 rounded-md text-base font-medium ${
+            currentPage === item.href 
+              ? 'bg-gray-100 text-primary dark:bg-gray-800 dark:text-primary-light' 
+              : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
+          }`}
+        >
+          {t(item.label)}
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<!-- Add padding to account for fixed header -->
+<div class="h-16"></div>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+      mobileMenuButton.setAttribute('aria-expanded', String(!isExpanded));
+      mobileMenu.classList.toggle('hidden');
+    });
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+  
+  // The following block is moved inside the if condition above
+  // document.querySelectorAll('#mobile-menu a').forEach(link => {
+
+</script>

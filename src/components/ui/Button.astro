@@ -1,0 +1,42 @@
+---
+type Variant = 'primary' | 'outline' | 'ghost' | 'link';
+
+interface Props {
+  href?: string;
+  variant?: Variant;
+  type?: 'button' | 'link';
+  className?: string;
+  children?: any;
+  target?: string;
+  rel?: string;
+}
+
+const { 
+  href = '#',
+  variant = 'primary',
+  type = 'button',
+  className = '',
+  children
+} = Astro.props;
+
+const baseClasses = 'inline-flex items-center justify-center px-6 py-3 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-gray-900';
+
+const variants: Record<Variant, string> = {
+  primary: 'bg-primary text-white hover:bg-primary-dark dark:bg-primary-light dark:hover:bg-primary',
+  outline: 'border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800',
+  ghost: 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800',
+  link: 'text-primary hover:underline underline-offset-4'
+};
+
+const buttonClasses = `${baseClasses} ${variants[variant] || variants.primary} ${className}`;
+---
+
+{type === 'link' ? (
+  <a href={href} class={buttonClasses}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={buttonClasses}>
+    <slot />
+  </button>
+)}

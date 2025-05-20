@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Mes Projets",
+    "contact": "Contactez-moi"
+  },
+  "hero": {
+    "title": "Bonjour, je suis {{name}}",
+    "subtitle": "Développeur Frontend",
+    "description": "Passionné par la création d'expériences web belles et fonctionnelles.",
+    "cta": "Voir mes projets"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "description": "Je suis un développeur frontend avec de l'expérience dans la création d'applications web modernes et réactives. J'aime apprendre de nouvelles technologies et partager mes connaissances avec la communauté.",
+    "skills": "Compétences",
+    "downloadCv": "Télécharger CV"
+  },
+  "projects": {
+    "title": "Mes Projets",
+    "description": "Quelques-uns de mes travaux et projets personnels sur lesquels j'ai travaillé.",
+    "view_project": "Voir le Projet",
+    "view_code": "Voir le Code"
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "description": "Vous avez une question ou souhaitez travailler ensemble ? N'hésitez pas à me contacter.",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Envoyer le message"
+    },
+    "success": "Merci pour votre message ! Je vous répondrai dès que possible.",
+    "error": "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer plus tard.",
+    "contactInfo": "Coordonnées",
+    "contactDescription": "Contactez-moi par l'un de ces canaux.",
+    "followMe": "Suivez-moi",
+    "phone": "Téléphone",
+    "email": "Email",
+    "location": "Localisation"
+  },
+  "footer": {
+    "description": "Développeur frontend passionné par la création d'expériences web exceptionnelles.",
+    "navigation": "Navigation",
+    "legal": "Légal",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "copyright": "Tous droits réservés."
+  },
+  "theme": {
+    "light": "Mode clair",
+    "dark": "Mode sombre"
+  },
+  "language": {
+    "es": "Espagnol",
+    "en": "Anglais",
+    "fr": "Français"
+  }
+}

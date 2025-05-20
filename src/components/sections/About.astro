@@ -1,0 +1,94 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Button from '../ui/Button.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const skills = [
+  { name: 'HTML5', level: 90 },
+  { name: 'CSS3', level: 85 },
+  { name: 'JavaScript', level: 80 },
+  { name: 'TypeScript', level: 75 },
+  { name: 'React', level: 80 },
+  { name: 'Node.js', level: 70 },
+  { name: 'Git', level: 85 },
+  { name: 'Responsive Design', level: 90 },
+];
+---
+
+<section id="about" class="section">
+  <div class="container mx-auto px-4">
+    <h2 class="section-title">
+      {t('about.title')}
+    </h2>
+    
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="order-2 md:order-1">
+        <div class="prose dark:prose-invert max-w-none">
+          <p class="text-lg mb-6">
+            {t('about.description')}
+          </p>
+          
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">
+              {t('about.skills')}
+            </h3>
+            <div class="space-y-4">
+              {skills.map((skill) => {
+                const skillName = skill.name;
+                return (
+                  <div>
+                    <div class="flex justify-between mb-1">
+                      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {skillName}
+                      </span>
+                      <span class="text-sm text-gray-500">
+                        {skill.level}%
+                      </span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                      <div 
+                        class="bg-primary h-2.5 rounded-full dark:bg-primary-light" 
+                        style={{ width: `${skill.level}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          
+          <div class="flex flex-wrap gap-4">
+            <Button href="#contact" variant="primary">
+              {t('contact.title')}
+            </Button>
+            <Button 
+              href="/cv.pdf" 
+              variant="outline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t('about.downloadCv')}
+            </Button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="order-1 md:order-2">
+        <div class="relative max-w-md mx-auto">
+          <div class="relative z-10 w-full h-full rounded-2xl overflow-hidden border-4 border-primary/20 dark:border-primary-light/20">
+            <img 
+              src="/images/profile.jpg" 
+              alt="Profile" 
+              class="w-full h-auto object-cover"
+              width="400"
+              height="500"
+            />
+          </div>
+          <div class="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border-4 border-primary/20 dark:border-primary-light/20 -z-10"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

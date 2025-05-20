@@ -1,0 +1,76 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import type { UiKeys } from '../../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Initial theme state for ARIA label, will be updated by client-side script if JS is enabled
+// This Astro component only renders initial state; client script handles updates.
+let initialAriaLabelKey = 'theme.dark'; // Default to offering 'Switch to Dark Mode'
+if (typeof localStorage !== 'undefined' && localStorage.getItem('theme') === 'dark') {
+  initialAriaLabelKey = 'theme.light';
+} else if (typeof localStorage === 'undefined' && typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  // No localStorage, but system prefers dark
+  initialAriaLabelKey = 'theme.light';
+}
+
+const labelLight = t('theme.light');
+const labelDark = t('theme.dark');
+
+// The toggleTheme function will be defined and used in the client-side script part of the button for interactivity.
+
+// The toggleTheme function logic is moved to an inline script for the button
+// or managed by a client-side script block if more complex interaction is needed.
+// For this component, an inline onclick that calls a global or component-scoped function is typical.
+---
+
+<button 
+  id="theme-toggle-button"
+  class="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+  aria-label={t(initialAriaLabelKey as UiKeys)} 
+  type="button"
+  data-label-light={labelLight}
+  data-label-dark={labelDark}
+>
+  <!-- Script for toggling directly within the component -->
+  <script is:inline>
+    const themeToggleButton = document.getElementById('theme-toggle-button');
+    const initialUserTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const applyTheme = (theme) => {
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggleButton.setAttribute('aria-label', themeToggleButton.dataset.labelLight);
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        themeToggleButton.setAttribute('aria-label', themeToggleButton.dataset.labelDark);
+      }
+    };
+
+    // Initialize theme based on localStorage or system preference
+    if (initialUserTheme === 'dark' || (!initialUserTheme && systemPrefersDark)) {
+      applyTheme('dark');
+    } else {
+      applyTheme('light'); // Default to light if no preference
+    }
+
+    themeToggleButton.addEventListener('click', () => {
+      const currentIsDark = document.documentElement.classList.contains('dark');
+      applyTheme(currentIsDark ? 'light' : 'dark');
+    });
+  </script>
+  <span class="dark:hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+    </svg>
+  </span>
+  <span class="hidden dark:inline">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+    </svg>
+  </span>
+</button>
