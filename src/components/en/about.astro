@@ -1,22 +1,17 @@
 ---
-// src/pages/about.astro (Español)
-import Layout from '../layouts/Layout.astro'; // Ajustada la ruta
+// src/pages/en/about.astro
+import Layout from '../../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import profilePic from '../assets/me.jpg'; // Ajustada la ruta
-import { useTranslations } from '../i18n/utils'; // Ajustada la ruta
+import profilePic from '../../assets/me.jpg';
+import { useTranslations } from '../../i18n/utils';
 import { Briefcase, GraduationCap, MessageCircle, Code, Linkedin, Github, Mail, Phone } from 'lucide-react';
 
-const lang = 'es';
+const lang = 'en';
 const t = useTranslations(lang);
 
-const technicalSkills = {
-  languagesList: t('skills.languages.list') as unknown as { name: string }[],
-  frameworksList: t('skills.frameworks.list') as unknown as { name: string }[],
-  toolsList: t('skills.tools.list') as unknown as { name: string }[],
-  methodologiesList: t('skills.methodologies.list') as unknown as { name: string }[],
-  stylingList: t('skills.styling.list') as unknown as { name: string }[],
-  testingList: t('skills.testing.list') as unknown as { name: string }[]
-};
+interface Skill { name: string; }
+
+
 
 const education = [
   {
@@ -36,9 +31,8 @@ const education = [
 const languagesSpoken = [
   { name: t('languages.spanish.name'), level: t('languages.spanish.level') },
   { name: t('languages.english.name'), level: t('languages.english.level') },
-  { name: t('languages.french.name'), level: t('languages.french.level') },
+  { name: t('languages.french.name'), level: t('languages.french.level') }
 ];
-
 ---
 
 <section class="py-10 md:py-16" id="about">
@@ -59,12 +53,12 @@ const languagesSpoken = [
           />
         </div>
         <h2 class="text-2xl font-semibold text-center mb-2">Crhistian García</h2>
-        <p class="text-indigo-600 dark:text-indigo-400 text-center mb-6">Desarrollador Web Frontend</p>
+        <p class="text-indigo-600 dark:text-indigo-400 text-center mb-6">Frontend Web Developer</p>
         
         <div class="text-sm text-gray-700 dark:text-gray-300 space-y-2 mb-6 text-center md:text-left">
-          <p class="flex items-center justify-start"><span class="mr-2 text-indigo-500"><Mail size={16} /></span> {t('contact.email')}: <a href="mailto:crhistian.garcia.frontend@gmail.com" class="hover:underline">crhistian.garcia.frontend@gmail.com</a></p>
+          <p class="flex items-center justify-start"><span class="mr-2 text-indigo-500"><Mail size={16}  /></span> {t('contact.email')}: <a href="mailto:crhistian.garcia.frontend@gmail.com" class="hover:underline">crhistian.garcia.frontend@gmail.com</a></p>
           <p class="flex items-center justify-start"><span class="mr-2 text-indigo-500"><Phone size={16} /></span> {t('contact.phone')}: <a href="tel:+34642772300" class="hover:underline">+34 642 772 300</a></p>
-          <p class="flex items-center justify-start"><span class="mr-2 text-indigo-500"><Linkedin size={16} /></span> <a href="https://www.linkedin.com/in/crhistian-garcia-013081211/" target="_blank" rel="noopener noreferrer" class="hover:underline">{t('contact.linkedin')}</a></p>
+          <p class="flex items-center justify-start"><span class="mr-2 text-indigo-500"><Linkedin size={16} /></span> <a href="https://www.linkedin.com/in/crhistian-alexander-garcia-urbano-5251a11b0/" target="_blank" rel="noopener noreferrer" class="hover:underline">{t('contact.linkedin')}</a></p>
           <p class="flex items-center justify-start"><span class="mr-2 text-indigo-500"><Github size={16} /></span> <a href="https://github.com/crhistian2296" target="_blank" rel="noopener noreferrer" class="hover:underline">{t('contact.github')}</a></p>
         </div>
       </div>
@@ -79,44 +73,44 @@ const languagesSpoken = [
             <div>
               <h4 class="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{t('skills.languages.title')}:</h4>
               <div class="flex flex-wrap gap-2">
-                {technicalSkills.languagesList.map((skill: { name: string }) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
+                {t('skills.languages.list').map((skill: Skill) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
               </div>
             </div>
             <div>
               <h4 class="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{t('skills.frameworks.title')}:</h4>
               <div class="flex flex-wrap gap-2">
-                {technicalSkills.frameworksList.map((skill: { name: string }) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
+                {t('skills.frameworks.list').map((skill: Skill) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
               </div>
             </div>
             <div>
               <h4 class="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{t('skills.tools.title')}:</h4>
               <div class="flex flex-wrap gap-2">
-                {technicalSkills.toolsList.map((skill: { name: string }) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
+                {t('skills.tools.list').map((skill: Skill) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
               </div>
             </div>
-            <div>
+              <div>
               <h4 class="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{t('skills.styling.title')}:</h4>
               <div class="flex flex-wrap gap-2">
-                {technicalSkills.stylingList.map((skill: { name: string }) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
+                {t('skills.styling.list').map((skill: Skill) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
               </div>
             </div>
             <div>
               <h4 class="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{t('skills.methodologies.title')}:</h4>
               <div class="flex flex-wrap gap-2">
-                {technicalSkills.methodologiesList.map((skill: { name: string }) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
+                {t('skills.methodologies.list').map((skill: Skill) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
               </div>
             </div>
             <div>
               <h4 class="font-semibold text-lg mb-2 text-gray-700 dark:text-gray-300">{t('skills.testing.title')}:</h4>
               <div class="flex flex-wrap gap-2">
-                {technicalSkills.testingList.map((skill: { name: string }) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
+                {t('skills.testing.list').map((skill: Skill) => <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 px-3 py-1 text-sm font-medium rounded-full">{skill.name}</span>)}
               </div>
             </div>
           </div>
 
           <h3 class="text-2xl font-semibold mb-6 flex items-center"><span class="mr-2 text-indigo-500"><GraduationCap size={24} /></span> {t('education.title')}</h3>
           <div class="space-y-6 mb-6">
-            {education.map((edu: { institution: string; degree: string; period: string; description?: string }) => (
+            {education.map(edu => (
               <div class="bg-white dark:bg-gray-750 p-4 rounded-md shadow-sm">
                 <h4 class="text-xl font-semibold text-indigo-600 dark:text-indigo-400">{edu.degree}</h4>
                 <p class="text-gray-600 dark:text-gray-400 text-sm mb-1">{edu.institution} | {edu.period}</p>

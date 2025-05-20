@@ -1,7 +1,6 @@
 ---
 // src/pages/projects.astro (Español - Default)
-import Layout from '../layouts/Layout.astro';
-import { useTranslations } from '../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
 import { Code, ExternalLink, Rocket, Wrench } from 'lucide-react';
 
 const lang = 'es';
@@ -35,7 +34,7 @@ const projects = [
       {projects.map((project, index) => (
         <div class={`bg-gray-50 dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 ease-in-out border-l-4 ${index % 2 === 0 ? 'border-sky-500' : 'border-teal-500'}`}>
           <h2 class="text-2xl font-semibold text-sky-700 dark:text-sky-400 mb-3 flex items-center">
-            <Rocket size={24} class="mr-3 opacity-80" />
+            <span class="mr-2 text-green-500"><Rocket size={24} /></span>
             {project.title}
           </h2>
           
@@ -44,7 +43,7 @@ const projects = [
           {project.technologies && project.technologies.length > 0 && (
             <div class="mb-6">
               <h4 class="font-semibold text-md text-gray-700 dark:text-gray-300 mb-2 flex items-center">
-                <Wrench size={18} class="mr-2 opacity-75" /> 
+                <span class="mr-2 text-green-500"><Wrench size={18} /></span> 
                 {t('projects.technologiesUsed')}:
               </h4>
               <div class="flex flex-wrap gap-2">
@@ -63,7 +62,7 @@ const projects = [
                 rel="noopener noreferrer" 
                 class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-gray-700 dark:bg-gray-600 rounded-md hover:bg-gray-800 dark:hover:bg-gray-500 transition-colors duration-200 ease-in-out"
               >
-                <Code size={16} class="mr-2" /> {t('projects.repository')}
+                <span class="mr-2 text-green-500"><Code size={16} /></span> {t('projects.repository')}
               </a>
             )}
             {project.liveUrl && (
@@ -71,9 +70,9 @@ const projects = [
                 href={project.liveUrl} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-md transition-colors duration-200 ease-in-out"
+                class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-500 dark:bg-indigo-600 rounded-md hover:bg-indigo-800 dark:hover:bg-indigo-500 transition-colors duration-200 ease-in-out"
               >
-                <ExternalLink size={16} class="mr-2" /> {t('projects.liveDemo')}
+                <span class="mr-2 text-green-500"><ExternalLink size={16} /></span> {t('projects.liveDemo')}
               </a>
             )}
           </div>

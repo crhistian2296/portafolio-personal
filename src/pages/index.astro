@@ -1,11 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { useTranslations } from '../i18n/utils';
-import About from './about.astro';
-import Experience from './experience.astro';
-import Projects from './projects.astro';
-
-const t = useTranslations('es');
+import About from '../components/es/about.astro';
+import Experience from '../components/es/experience.astro';
+import Projects from '../components/es/projects.astro';
 ---
 <Layout title="Inicio - Crhistian García" description="Página de inicio del portafolio de Crhistian García.">
   <About/>

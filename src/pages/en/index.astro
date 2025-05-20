@@ -1,14 +1,11 @@
 ---
-import Layout from '../../layouts/Layout.astro'; // Ajustar ruta por estar en subdirectorio
-import { useTranslations } from '../../i18n/utils'; // Ajustar ruta
-const t = useTranslations('en');
+import Layout from '../../layouts/Layout.astro';
+import About from '../../components/en/about.astro';
+import Experience from '../../components/en/experience.astro';
+import Projects from '../../components/en/projects.astro';
 ---
 <Layout title="Home - Crhistian García" description="Homepage of Crhistian García's portfolio.">
-  <section class="py-12">
-    <h1 class="text-4xl font-bold text-center mb-2">{t('nav.home')}</h1>
-    <p class="text-xl text-center text-gray-600 dark:text-gray-300">
-      Welcome to my personal portfolio.
-    </p>
-    <!-- More content here -->
-  </section>
+  <About/>
+  <Experience/>
+  <Projects/>
 </Layout>
