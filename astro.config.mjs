@@ -8,7 +8,11 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    // Añadido para permitir el acceso desde ngrok
+    server: {
+      allowedHosts: ['e054-2a0c-5a81-9201-8800-65ee-6944-2d68-ee86.ngrok-free.app']
+    }
   },
 
   i18n: {
