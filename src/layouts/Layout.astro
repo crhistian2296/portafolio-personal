@@ -5,6 +5,7 @@ import ThemeToggle from '../components/ui/ThemeToggle.astro';
 import LanguageSwitcher from '../components/ui/LanguageSwitcher.astro'; // Descomentado
 import { getLangFromUrl, useTranslations, getPathWithLang } from '../i18n/utils'; // Añadido useTranslations y getPathWithLang
 import { Menu } from 'lucide-react';
+import { ClientRouter } from 'astro:transitions';
 
 export interface Props {
   title: string;
@@ -20,6 +21,7 @@ const t = useTranslations(lang); // Para traducir el texto del footer
 <!doctype html>
 <html lang={lang} class="scroll-smooth">
   <head>
+    <ClientRouter />
     <meta charset="UTF-8" />
     <meta name="description" content={description || "Portafolio de Crhistian García"} />
     <meta name="viewport" content="width=device-width" />
@@ -79,9 +81,9 @@ const t = useTranslations(lang); // Para traducir el texto del footer
           <a href="#projects" onclick="scrollToSection('projects', event)" target="_self" class="px-3 py-2 rounded-md hover:bg-secondary transition-colors">{t('nav.projects')}</a>
         </div>
         <div class="flex items-center gap-2 lg:gap-3">
-          <LanguageSwitcher />
+          <LanguageSwitcher client:load />
           <ThemeToggle />
-          <button id="menu-toggle" class="md:hidden flex items-center p-2 rounded-md hover:bg-secondary transition-colors" aria-label="Toggle menu">
+          <button id="menu-toggle" class="md:hidden flex items-center p-2 rounded-md hover:bg-secondary transition-colors" aria-label="Toggle menu" onclick="toggleMenu()">
             <Menu className="w-6 h-6" />
           </button>
         </div>
@@ -91,12 +93,14 @@ const t = useTranslations(lang); // Para traducir el texto del footer
           <a href="#projects" onclick="scrollToSection('projects', event)" target="_self" class="block px-3 py-2 rounded-md hover:bg-secondary transition-colors">{t('nav.projects')}</a>
         </div>
         <script is:inline>
+            document.addEventListener('astro:page-load', () => {
           const menuToggle = document.getElementById('menu-toggle');
           const menu = document.getElementById('menu');
           menuToggle.addEventListener('click', () => {
             menu.classList.toggle('hidden');
           });
-        </script>
+        });
+      </script>
       </nav>
     </header>
     <main class="pt-20 container mx-auto px-4">

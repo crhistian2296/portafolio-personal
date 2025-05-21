@@ -3,9 +3,21 @@ import Layout from '../layouts/Layout.astro';
 import About from '../components/es/about.astro';
 import Experience from '../components/es/experience.astro';
 import Projects from '../components/es/projects.astro';
+import { getLangFromUrl } from '../i18n/utils';
+
+// Aceptar lang como prop o obtenerlo de la URL
+const { lang: propLang } = Astro.props;
+const lang = propLang || getLangFromUrl(Astro.url);
+
+const description = {
+  es: "Página de inicio del portafolio de Crhistian García.",
+  en: "Homepage of Crhistian García's portfolio.",
+  fr: "Page d'accueil du portfolio de Crhistian García.",
+};
 ---
-<Layout title="Inicio - Crhistian García" description="Página de inicio del portafolio de Crhistian García.">
-  <About/>
-  <Experience/>
-  <Projects/>
+
+<Layout title="CV - Crhistian García" description={description[lang as keyof typeof description]}>
+  <About lang={lang} />
+  <Experience lang={lang}/>
+  <Projects lang={lang}/>
 </Layout>

@@ -14,6 +14,8 @@ import { Sun, Moon } from 'lucide-react'; // Usaremos iconos de lucide-react que
 </button>
 
 <script is:inline>
+    document.addEventListener('astro:page-load', () => {
+
   const themeToggle = document.getElementById('theme-toggle');
   const htmlElement = document.documentElement;
 
@@ -37,4 +39,5 @@ import { Sun, Moon } from 'lucide-react'; // Usaremos iconos de lucide-react que
     const newTheme = htmlElement.classList.contains('dark') ? 'light' : 'dark';
     applyTheme(newTheme);
   });
+});
 </script>

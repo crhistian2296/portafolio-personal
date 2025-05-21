@@ -34,17 +34,21 @@ const currentPath = Astro.url.pathname.replace(new RegExp(`^/${currentLang}`), '
 </div>
 
 <script is:inline>
+  document.addEventListener('astro:page-load', () => {
+  // Re-inicializa botones, event listeners, etc.
   const button = document.getElementById('lang-switcher-button');
   const dropdown = document.getElementById('lang-switcher-dropdown');
-
+  
   button.addEventListener('click', (event) => {
     event.stopPropagation();
     dropdown.classList.toggle('hidden');
   });
-
+  
   document.addEventListener('click', (event) => {
     if (!dropdown.classList.contains('hidden') && !button.contains(event.target)) {
       dropdown.classList.add('hidden');
     }
   });
+});
+
 </script>
