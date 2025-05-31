@@ -81,7 +81,7 @@ const t = useTranslations(lang); // Para traducir el texto del footer
           <a href="#projects" onclick="scrollToSection('projects', event)" target="_self" class="px-3 py-2 rounded-md hover:bg-secondary transition-colors">{t('nav.projects')}</a>
         </div>
         <div class="flex items-center gap-2 lg:gap-3">
-          <LanguageSwitcher client:load />
+          <LanguageSwitcher />
           <ThemeToggle />
           <button id="menu-toggle" class="md:hidden flex items-center p-2 rounded-md hover:bg-secondary transition-colors" aria-label="Toggle menu" onclick="toggleMenu()">
             <Menu className="w-6 h-6" />

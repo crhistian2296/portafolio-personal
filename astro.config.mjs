@@ -11,7 +11,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
     // Añadido para permitir el acceso desde ngrok
     server: {
-      allowedHosts: ['e054-2a0c-5a81-9201-8800-65ee-6944-2d68-ee86.ngrok-free.app']
+      allowedHosts: ['f3a1-2a0c-5a81-9201-8800-65ee-6944-2d68-ee86.ngrok-free.app']
     }
   },
 
