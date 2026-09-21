@@ -1,12 +1,19 @@
 ---
 // src/pages/projects.astro (Español - Default)
-import { useTranslations } from '../../i18n/utils';
 import { Code, ExternalLink, Rocket, Wrench } from 'lucide-react';
+import { useTranslations } from '../../i18n/utils';
 
-const lang = 'es';
+const { lang } = Astro.props;
 const t = useTranslations(lang);
 
 const projects = [
+  {
+    title: t('projects.dynamicworkflow.title'),
+    description: t('projects.dynamicworkflow.description'),
+    repoUrl: t('projects.dynamicworkflow.repoUrl'),
+    liveUrl: t('projects.dynamicworkflow.liveUrl'),
+    technologies: ['React', 'TypeScript', 'NextJs', 'API Rest', 'Tailwind CSS'],
+  },
   {
     title: t('projects.meteoapp.title'),
     description: t('projects.meteoapp.description'),

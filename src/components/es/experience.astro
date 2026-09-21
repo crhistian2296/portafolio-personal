@@ -1,18 +1,50 @@
 ---
 // src/pages/experience.astro (Español)
+import { Briefcase, CalendarDays, CheckCircle, MapPin } from 'lucide-react';
 import { useTranslations } from '../../i18n/utils';
-import { Briefcase, CalendarDays, MapPin, CheckCircle } from 'lucide-react';
 
-const lang = 'es';
+const { lang } = Astro.props;
 const t = useTranslations(lang);
 
 const experiences = [
+  {
+    // Keifi Technologies
+    company: t('experience.keifi.company'),
+    role: t('experience.keifi.role'),
+    period: t('experience.keifi.period'),
+    location: t('experience.keifi.location'), // Location is accurate as per ui.ts
+    description: [
+      t('experience.keifi.resp1'),
+      t('experience.keifi.resp2'),
+      t('experience.keifi.resp3'),
+      t('experience.keifi.resp4'),
+      t('experience.keifi.resp5'),
+      t('experience.keifi.resp6'),
+      t('experience.keifi.resp7'),
+      t('experience.keifi.resp8'),
+    ].filter(
+      (desc) => (desc && desc !== t('experience.keifi.resp1')) || desc !== ''
+    ), // Filter out untranslated or empty strings
+    technologies: [
+      'React',
+      'PHP',
+      'Next.js',
+      'TypeScript',
+      'Redux',
+      'Sass',
+      'CSS3',
+      'Git',
+      'GitHub',
+      'Vitest',
+      'React Testing Library',
+    ],
+  },
   {
     // Bitban Technologies
     company: t('experience.bitban.company'),
     role: t('experience.bitban.role'),
     period: t('experience.bitban.period'),
-    location: 'Madrid, España', // Location is accurate as per ui.ts
+    location: t('experience.bitban.location'), // Location is accurate as per ui.ts
     description: [
       t('experience.bitban.resp1'),
       t('experience.bitban.resp2'),
@@ -44,7 +76,7 @@ const experiences = [
     company: t('experience.innovation.company'),
     role: t('experience.innovation.role'),
     period: t('experience.innovation.period'),
-    location: 'Barcelona, España', // Location can be kept or updated if needed
+    location: t('experience.innovation.location'), // Location can be kept or updated if needed
     description: [
       t('experience.innovation.resp1'),
       t('experience.innovation.resp2'),
@@ -60,7 +92,7 @@ const experiences = [
     company: t('experience.univalle.company'),
     role: t('experience.univalle.role'),
     period: t('experience.univalle.period'),
-    location: 'Cali, Colombia', // Location updated as per ui.ts
+    location: t('experience.univalle.location'), // Location updated as per ui.ts
     description: [
       t('experience.univalle.resp1'),
       t('experience.univalle.resp2'),
