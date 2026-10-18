@@ -358,7 +358,7 @@ export const ui = {
     'projects.journalapp.title': 'JournalApp',
     'projects.journalapp.description':
       'Plataforma web para la creación y organización de notas, enfocada en la productividad personal.\n\nIntegración con Cloudinary para gestión de archivos multimedia y diseño minimalista.',
-    'projects.journalapp.repoUrl': 'https://github.com/crprim2296/JournalApp',
+    'projects.journalapp.repoUrl': 'https://github.com/crhistian2296/JournalApp',
     'projects.journalapp.liveUrl': 'https://journal-app-six-rho.vercel.app/',
 
     // --- SKILLS ---
