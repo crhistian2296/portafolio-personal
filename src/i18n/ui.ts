@@ -139,6 +139,12 @@ export const ui = {
       'https://github.com/crhistian2296/JournalApp',
     'projects.journalapp.liveUrl': 'https://journal-app-six-rho.vercel.app/',
 
+    'projects.podoasis.title': 'PodOasis',
+    'projects.podoasis.description':
+      'Top 100 music podcasts on iTunes, with a minimalist and modern design. It allows users to discover, listen to and share their favourite podcasts.\n\nDeveloped using React, Next.js and Tailwind CSS to deliver a smooth and engaging user experience. A responsive and optimised design was implemented to enhance the user experience on both mobile and desktop devices.',
+    'projects.podoasis.repoUrl': 'https://github.com/crhistian2296/PodOasis',
+    'projects.podoasis.liveUrl': 'https://pod-oasis.vercel.app/',
+
     // --- SKILLS ---
     'skills.title': 'Technical Skills',
     'skills.languages.title': 'Programming Languages',
@@ -210,6 +216,11 @@ export const ui = {
     'education.univalle.period': '2018 – 2021',
     'education.univalle.description':
       'Acquired a solid foundation in computer science and software development.',
+    'education.madrid42.institution': '42 Madrid',
+    'education.madrid42.degree': 'Software Development Training Programme',
+    'education.madrid42.period': '2022',
+    'education.madrid42.description':
+      'Practical, intensive training based on projects and collaboration.',
 
     // --- LANGUAGES SPOKEN ---
     'languages.title': 'Languages',
@@ -358,8 +369,15 @@ export const ui = {
     'projects.journalapp.title': 'JournalApp',
     'projects.journalapp.description':
       'Plataforma web para la creación y organización de notas, enfocada en la productividad personal.\n\nIntegración con Cloudinary para gestión de archivos multimedia y diseño minimalista.',
-    'projects.journalapp.repoUrl': 'https://github.com/crhistian2296/JournalApp',
+    'projects.journalapp.repoUrl':
+      'https://github.com/crhistian2296/JournalApp',
     'projects.journalapp.liveUrl': 'https://journal-app-six-rho.vercel.app/',
+
+    'projects.podoasis.title': 'PodOasis',
+    'projects.podoasis.description':
+      'Top 100 de podcasts musicalesen itunes, con un diseño minimalista y moderno. Permite a los usuarios descubrir, escuchar y compartir sus podcasts favoritos.\n\nDesarrollado con React, Next.js y Tailwind CSS para una experiencia de usuario fluida y atractiva. Se implementó un diseño responsivo y optimizado para mejorar la experiencia del usuario en dispositivos móviles y de escritorio.',
+    'projects.podoasis.repoUrl': 'https://github.com/crhistian2296/PodOasis',
+    'projects.podoasis.liveUrl': 'https://pod-oasis.vercel.app/',
 
     // --- SKILLS ---
     'skills.title': 'Habilidades Técnicas',
@@ -586,6 +604,12 @@ export const ui = {
       'https://github.com/crhistian2296/JournalApp',
     'projects.journalapp.liveUrl': 'https://journal-app-six-rho.vercel.app/',
 
+    'projects.podoasis.title': 'PodOasis',
+    'projects.podoasis.description':
+      "Top 100 des podcasts musicaux sur iTunes, avec un design minimaliste et moderne. Il permet aux utilisateurs de découvrir, d'écouter et de partager leurs podcasts préférés.\n\nDéveloppé avec React, Next.js et Tailwind CSS pour une expérience utilisateur fluide et attrayante. Un design responsive et optimisé a été mis en place afin d'améliorer l'expérience utilisateur sur les appareils mobiles et les ordinateurs de bureau.",
+    'projects.podoasis.repoUrl': 'https://github.com/crhistian2296/PodOasis',
+    'projects.podoasis.liveUrl': 'https://pod-oasis.vercel.app/',
+
     // --- SKILLS ---
     'skills.title': 'Compétences Techniques',
     'skills.languages.title': 'Langages de Programmation',
@@ -653,10 +677,16 @@ export const ui = {
     // --- EDUCATION ---
     'education.title': 'Formation',
     'education.univalle.degree': 'B.S. en Systèmes et Informatique',
-    'education.univallo.institution': 'Universidad del Valle, Cali, Colombie',
+    'education.univalle.institution': 'Universidad del Valle, Cali, Colombie',
     'education.univalle.period': '2018 – 2021',
     'education.univalle.description':
       'Formation solide en informatique et développement logiciel.',
+    'education.madrid42.institution': '42 Madrid',
+    'education.madrid42.degree':
+      'Programme de formation en développement logiciel',
+    'education.madrid42.period': '2022',
+    'education.madrid42.description':
+      'Formation pratique et intensive axée sur les projets et la collaboration.',
 
     // --- LANGUAGES SPOKEN ---
     'languages.title': 'Langues',
